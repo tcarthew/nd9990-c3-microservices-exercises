@@ -1,4 +1,4 @@
-FROM beedevelop/ionic:latest AS ionic
+FROM beevelop/ionic:latest AS ionic
 
 WORKDIR /usr/src/app
 
