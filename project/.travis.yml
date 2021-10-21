@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - 14
+
+services:
+  - docker
+
+install:
+  - echo "installs go here"
+
+before_script:
+  - echo "tests go here"
+
+script:
+  - docker --version
+  - docker build -t tcart79/udagram-api-feed:v1 ./udagram-api-feed
+  - docker build -t tcart79/udagram-api-user:v1 ./udagram-api-user
+  - docker build -t tcart79/udagram-frontend:v1 ./udagram-frontend
+  - docker build -t tcart79/udagram-reverseproxy:v1 ./udagram-reverseproxy
+
+after_success:
+  - echo "$DOCKER_PASSWORD" docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push tcart79/udagram-api-feed:v1
+  - docker push tcart79/udagram-api-user:v1
+  - docker push tcart79/udagram-frontend:v1
+  - docker push tcart79/udagram-reverseproxy:v1
