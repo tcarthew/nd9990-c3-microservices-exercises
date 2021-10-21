@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-feed
+  labels:
+    app: api-feed
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-feed
+  template:
+    metadata:
+      labels:
+        app: api-feed
+    spec:
+      containers:
+        - name: backend-api-feed
+          image: tcart79/udagram-api-feed:v1
+          ports:
+          - containerPort: 8080

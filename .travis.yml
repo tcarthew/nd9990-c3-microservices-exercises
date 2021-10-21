@@ -13,19 +13,15 @@ before_script:
 
 script:
   - docker --version
-  - docker build -t udagram-api-feed ./project/udagram-api-feed
+  - docker-compose -f ./project/docker-compose-build.yaml build --parallel
   - docker tag udagram-api-feed tcart79/udagram-api-feed:v1
-  - docker build -t udagram-api-user ./project/udagram-api-user
   - docker tag udagram-api-user tcart79/udagram-api-user:v1
-  - docker build -t udagram-frontend ./project/udagram-frontend
-  - docker tag updagram-frontend tcart79/udagram-frontend:v1
-  - docker build -t reverseproxy ./project/udagram-reverseproxy
+  - docker tag udagram-frontend tcart79/udagram-frontend:v1
   - docker tag reverseproxy tcart79/reverseproxy:v1 
 
 after_success:
-  - echo "$DOCKER_PASSWORD" docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push tcart79/udagram-api-feed:v1
   - docker push tcart79/udagram-api-user:v1
   - docker push tcart79/udagram-frontend:v1
   - docker push tcart79/reverseproxy:v1
-  - docker image ls

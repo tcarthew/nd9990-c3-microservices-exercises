@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-udagram
+  labels:
+    app: frontend-udagram
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-udagram
+  template:
+    metadata:
+      labels:
+        app: front-udagram
+    spec:
+      - name: frontend-udagram
+        image: tcart79/udagram-frontend
+        ports:
+          - containerPort: 8100
