@@ -19,7 +19,7 @@ jobs:
       - run: |
             TAG=0.1.$CIRCLE_BUILD_NUM
             docker --version
-            docker compose -f ./project/docker-compose-build.yaml build --parallel
+            docker-compose -f ./project/docker-compose-build.yaml build --parallel
             docker tag udagram-api-feed tcart79/udagram-api-feed:latest
             docker tag udagram-api-user tcart79/udagram-api-user:latest
             docker tag udagram-frontend tcart79/udagram-frontend:latest
