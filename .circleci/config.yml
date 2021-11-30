@@ -17,19 +17,19 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: false
       - run: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            docker --version
-            docker-compose -f ./project/docker-compose-build.yaml build --parallel
-            docker tag udagram-api-feed tcart79/udagram-api-feed:latest
-            docker tag udagram-api-user tcart79/udagram-api-user:latest
-            docker tag udagram-frontend tcart79/udagram-frontend:latest
-            docker tag reverseproxy tcart79/reverseproxy:latest
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker --version
+          docker-compose -f ./project/docker-compose-build.yaml build --parallel
+          docker tag udagram-api-feed $DOCKER_PWD/udagram-api-feed:latest
+          docker tag udagram-api-user $DOCKER_PWD/udagram-api-user:latest
+          docker tag udagram-frontend $DOCKER_PWD/udagram-frontend:latest
+          docker tag reverseproxy $DOCKER_PWD/reverseproxy:latest
       - run: |
           echo $DOCKER_PWD | docker login -u $DOCKER_USER --password-stdin
-          docker push tcart79/udagram-api-feed:latest
-          docker push tcart79/udagram-api-user:latest
-          docker push tcart79/udagram-frontend:latest
-          docker push tcart79/reverseproxy:latest
+          docker push $DOCKER_PWD/udagram-api-feed:latest
+          docker push $DOCKER_PWD/udagram-api-user:latest
+          docker push $DOCKER_PWD/udagram-frontend:latest
+          docker push $DOCKER_PWD/reverseproxy:latest
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
