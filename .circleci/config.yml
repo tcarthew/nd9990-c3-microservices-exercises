@@ -20,16 +20,16 @@ jobs:
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker --version
           docker-compose -f ./project/docker-compose-build.yaml build --parallel
-          docker tag udagram-api-feed $DOCKER_PWD/udagram-api-feed:latest
-          docker tag udagram-api-user $DOCKER_PWD/udagram-api-user:latest
-          docker tag udagram-frontend $DOCKER_PWD/udagram-frontend:latest
-          docker tag reverseproxy $DOCKER_PWD/reverseproxy:latest
+          docker tag udagram-api-feed $DOCKER_USER/udagram-api-feed:latest
+          docker tag udagram-api-user $DOCKER_USER/udagram-api-user:latest
+          docker tag udagram-frontend $DOCKER_USER/udagram-frontend:latest
+          docker tag reverseproxy $DOCKER_USER/reverseproxy:latest
       - run: |
           echo $DOCKER_PWD | docker login -u $DOCKER_USER --password-stdin
-          docker push $DOCKER_PWD/udagram-api-feed:latest
-          docker push $DOCKER_PWD/udagram-api-user:latest
-          docker push $DOCKER_PWD/udagram-frontend:latest
-          docker push $DOCKER_PWD/reverseproxy:latest
+          docker push $DOCKER_USER/udagram-api-feed:latest
+          docker push $DOCKER_USER/udagram-api-user:latest
+          docker push $DOCKER_USER/udagram-frontend:latest
+          docker push $DOCKER_USER/reverseproxy:latest
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
