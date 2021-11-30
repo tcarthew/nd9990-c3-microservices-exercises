@@ -16,9 +16,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-      - run: 
-          name: Build service images 
-          command: |
+      - run: |
             TAG=0.1.$CIRCLE_BUILD_NUM
             docker --version
             docker compose -f ./project/docker-compose-build.yaml build --parallel
@@ -26,9 +24,7 @@ jobs:
             docker tag udagram-api-user tcart79/udagram-api-user:latest
             docker tag udagram-frontend tcart79/udagram-frontend:latest
             docker tag reverseproxy tcart79/reverseproxy:latest
-      - run:
-        name: Login & push images
-        command: |
+      - run: |
           echo $DOCKER_PWD | docker login -u $DOCKER_USER --password-stdin
           docker push tcart79/udagram-api-feed:latest
           docker push tcart79/udagram-api-user:latest
