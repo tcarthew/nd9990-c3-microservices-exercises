@@ -6,6 +6,21 @@ import { IndexRouter } from './controllers/v0/index.router';
 import { V0_FEED_MODELS } from './models/index';
 
 (async (): Promise<void> => {
+    
+    console.log("#####");
+    console.log("process.env: " + process.env);
+    console.log("#####");
+    console.log(
+        "username: " + process.env.POSTGRES_USERNAME + "___" +
+        "database: " + process.env.POSTGRES_DATABASE + "___" +
+        "port: " + process.env.POSTGRES_PORT + "___" +
+        "host: " + process.env.POSTGRES_HOST + "___" +
+        "dialect: " + process.env.POSTGRES_DIALECT + "___" +
+        "aws_region: " + process.env.AWS_REGION + "___" +
+        "aws_profile: " + process.env.AWS_PROFILE + "___" +
+        "aws_media_bucket: " + process.env.AWS_MEDIA_BUCKET
+    );
+
     sequelize.addModels(V0_FEED_MODELS);
 
     console.debug("Initialize database connection...");
@@ -37,20 +52,6 @@ import { V0_FEED_MODELS } from './models/index';
     app.get('/', async (req, res) => {
         res.send('/api/v0/');
     });
-
-    console.log("#####");
-    console.log("process.env: " + process.env);
-    console.log("#####");
-    console.log(
-        "username: " + process.env.POSTGRES_USERNAME + "___" +
-        "database: " + process.env.POSTGRES_DATABASE + "___" +
-        "port: " + process.env.POSTGRES_PORT + "___" +
-        "host: " + process.env.POSTGRES_HOST + "___" +
-        "dialect: " + process.env.POSTGRES_DIALECT + "___" +
-        "aws_region: " + process.env.AWS_REGION + "___" +
-        "aws_profile: " + process.env.AWS_PROFILE + "___" +
-        "aws_media_bucket: " + process.env.AWS_MEDIA_BUCKET
-    );
 
     // Start the Server
     app.listen(port, () => {
