@@ -12,9 +12,10 @@ spec:
   template:
     metadata:
       labels:
-        app: front-udagram
+        app: frontend-udagram
     spec:
-      - name: frontend-udagram
-        image: tcart79/udagram-frontend
-        ports:
-          - containerPort: 8100
+      containers:
+        - name: frontend-udagram
+          image: tcart79/udagram-frontend:latest
+          ports:
+            - containerPort: 8100

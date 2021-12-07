@@ -12,10 +12,10 @@ spec:
   template:
     metadata:
       labels:
-        app: reversproxy
+        app: reverseproxy
     spec:
       containers:
         - name: reverseproxy
-          image: tcart79/
+          image: tcart79/reverseproxy:latest
           ports:
           - containerPort: 80
