@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: backend-feed-svc
   labels:
-    app: backend-feed
+    run: backend-feed
 spec:
   ports:
   - port: 8080
