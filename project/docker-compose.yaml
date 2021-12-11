@@ -6,9 +6,9 @@ services:
       - 8080:8080
     restart: always
     depends_on:
-      - backend-user
-      - backend-feed
-  backend-users:
+      - api-user
+      - api-feed
+  backend-user-svc:
     image: udagram-api-user:latest
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
@@ -20,7 +20,7 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8080"  
-  backend-feed:
+  backend-feed-svc:
     image: udagram-api-feed:latest
     volumes:
       - $HOME/.aws:/root/.aws
