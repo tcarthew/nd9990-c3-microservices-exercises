@@ -32,7 +32,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: env-secrets
-                  key: POSTGRESS_USERNAME
+                  key: POSTGRES_USERNAME
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
