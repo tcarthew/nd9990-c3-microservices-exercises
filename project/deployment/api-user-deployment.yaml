@@ -3,19 +3,16 @@ kind: Deployment
 metadata:
   name: backend-user
   labels:
-    app: backend-user
+    service: backend-user
 spec:
   replicas: 2
-  selector:
-    matchLabels:
-      app: backend-user
   template:
     metadata:
       labels:
-        app: backend-user
+        service: backend-user
     spec:
       containers:
-        - name: backend-api-user
+        - name: backend-user
           image: tcart79/udagram-api-user:latest
           imagePullPolicy: Always
           resources:
