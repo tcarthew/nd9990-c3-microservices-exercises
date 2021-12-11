@@ -28,48 +28,57 @@ spec:
           ports:
           - containerPort: 8080
           env:
-          - name: POSTGRES_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: env-secrets
-                key: POSTGRES_USERNAME
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: env-secrets
-                key: POSTGRES_PASSWORD
-          - name: POSTGRES_DB
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: POSTGRES_DB
-          - name: POSTGRES_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: POSTGRES_HOST
-          - name: AWS_REGION
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: AWS_REGION
-          - name: AWS_PROFILE
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: AWS_PROFILE
-          - name: AWS_BUCKET
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: AWS_BUCKET
-          - name: URL
-            valueFrom:
-              configMapKeyRef:
-                name: env-config
-                key: URL
-          - name: JWT_SECRET
-            valueFrom:
-              configMapKeyRef:
-                name: env-secrets
-                key: JWT_SECRET
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: env-secrets
+                  key: POSTGRES_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: env-secrets
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_HOST
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_REGION
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_PROFILE
+            - name: AWS_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_BUCKET
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: URL
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: env-secrets
+                  key: JWT_SECRET
+          volumeMounts:
+            - name: aws-serets
+              mountPath: "~/.aws/"
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: aws-secrets
+          secret:
+            secretName: aws-secrets
