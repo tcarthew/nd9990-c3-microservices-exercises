@@ -31,12 +31,12 @@ spec:
           - name: POSTGRES_USERNAME
             valueFrom:
               configMapKeyRef:
-                name: env-config
+                name: env-secrets
                 key: POSTGRES_USERNAME
           - name: POSTGRES_PASSWORD
             valueFrom:
               configMapKeyRef:
-                name: env-config
+                name: env-secrets
                 key: POSTGRES_PASSWORD
           - name: POSTGRES_DB
             valueFrom:
@@ -71,5 +71,5 @@ spec:
           - name: JWT_SECRET
             valueFrom:
               configMapKeyRef:
-                name: env-config
+                name: env-secrets
                 key: JWT_SECRET
