@@ -75,7 +75,7 @@ spec:
                   key: JWT_SECRET
           volumeMounts:
             - name: aws-secrets
-              mountPath: "~/.aws/"
+              mountPath: "/root/.aws/"
               readOnly: true
       restartPolicy: Always
       volumes:
