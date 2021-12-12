@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: frontend-udagram
   labels:
-    app: frontend-udagram
+    service: frontend-udagram
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontend-udagram
+      service: frontend-udagram
   template:
     metadata:
       labels:
-        app: frontend-udagram
+        service: frontend-udagram
     spec:
       containers:
         - name: frontend-udagram
@@ -25,3 +25,5 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "500m"
+          ports:
+            - containerPort: 8100
